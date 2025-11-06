@@ -1,0 +1,3 @@
+D:/desktop/Code/Practice/LearnOpenGL/firstTriangle/build/CMakeFiles/firstTriangle.dir
+D:/desktop/Code/Practice/LearnOpenGL/firstTriangle/build/CMakeFiles/edit_cache.dir
+D:/desktop/Code/Practice/LearnOpenGL/firstTriangle/build/CMakeFiles/rebuild_cache.dir
