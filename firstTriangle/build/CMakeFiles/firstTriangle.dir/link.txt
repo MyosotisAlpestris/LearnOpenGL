@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\firstTriangle.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\firstTriangle.dir/objects.a CMakeFiles/firstTriangle.dir/src/triangle.cpp.obj CMakeFiles/firstTriangle.dir/D_/desktop/Code/Libraries/GLAD/src/glad.c.obj
-C:\msys64\mingw64\bin\c++.exe  -Wall -Wextra -Wl,--whole-archive CMakeFiles\firstTriangle.dir/objects.a -Wl,--no-whole-archive -o firstTriangle.exe -Wl,--out-implib,libfirstTriangle.dll.a -Wl,--major-image-version,0,--minor-image-version,0   -LD:\desktop\Code\Libraries\GLFW\lib-mingw-w64  -lglfw3 -lopengl32 -lgdi32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
