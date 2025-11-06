@@ -40,11 +40,15 @@ int main() {
     while (!glfwWindowShouldClose(window)) {
         //输入
         processInput(window);
+
+        //设置清除颜色
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        //清除颜色缓冲
+        glClear(GL_COLOR_BUFFER_BIT);
+        //交换缓冲
         glfwSwapBuffers(window);
         //检查事件触发，调用回调函数
         glfwPollEvents();
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
     }
     glfwTerminate();
     return 0;
