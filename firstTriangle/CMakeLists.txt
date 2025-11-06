@@ -26,8 +26,14 @@ set(CMAKE_CXX_USE_RESPONSE_FILE_FOR_LIBRARIES OFF)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
 
-# 设置库路径（根据实际情况修改�?
-set(LIBS_PATH "D:/desktop/Code/Libraries")
+# 设置库路径（使用相对路径，从项目根目录向上查找）
+# 用户可以通过环境变量 LIBS_PATH 自定义库路径
+if(DEFINED ENV{LIBS_PATH})
+    set(LIBS_PATH $ENV{LIBS_PATH})
+else()
+    # 默认相对路径：从 firstTriangle 目录向上 3 层到 Code，再到 Libraries
+    set(LIBS_PATH "${CMAKE_SOURCE_DIR}/../../../Libraries")
+endif()
 
 # 源文件
 set(SOURCES

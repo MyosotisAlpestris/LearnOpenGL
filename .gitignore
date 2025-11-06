@@ -72,3 +72,36 @@ synsets1000-subgraph.txt
 # Please don't unless you know what you're doing
 *.iml
 **/.idea/**
+
+# ===============================================
+# C++ / CMake 项目忽略规则
+# ===============================================
+
+# 编译产物
+**/build/
+**/cmake-build-*/
+**/*.exe
+**/*.dll
+**/*.so
+**/*.dylib
+**/*.a
+**/*.lib
+**/*.obj
+**/*.o
+
+# CMake 生成的文件
+**/CMakeCache.txt
+**/CMakeFiles/
+**/cmake_install.cmake
+**/install_manifest.txt
+**/compile_commands.json
+**/CTestTestfile.cmake
+**/_deps/
+**/Makefile
+
+# 其他临时文件
+**/*.log
+**/*.user
+**/*.suo
+**/*.swp
+**/.cache/
