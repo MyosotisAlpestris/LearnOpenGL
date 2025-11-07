@@ -45,10 +45,11 @@ set(SOURCES
 # 生成可执行文�?
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-# 包含头文件目�?
+# 包含头文件目录
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${LIBS_PATH}/GLAD/include
     ${LIBS_PATH}/GLFW/include
+    ${LIBS_PATH}/glm-1.0.2
     ${CMAKE_SOURCE_DIR}/include
 )
 

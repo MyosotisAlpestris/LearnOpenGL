@@ -1,6 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include "stb_image.h"
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -16,9 +18,11 @@ const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 2) in vec2 aTexCoord;\n"
     "out vec3 ourColor;\n"
     "out vec2 TexCoord;\n"
+    "uniform mat4 transform;\n"
     "void main()\n"
     "{\n"
     "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "   gl_Position = transform * gl_Position;\n"
     "   ourColor = aColor;\n"
     "   TexCoord = vec2(aTexCoord.x, 1.0 - aTexCoord.y);\n"
     "}\0";
@@ -47,7 +51,7 @@ int main()
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Texture", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -190,8 +194,18 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        // 创建变换矩阵
+        glm::mat4 trans = glm::mat4(1.0f); // 初始化为单位矩阵
+        trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        trans = glm::scale(trans, glm::vec3(1.25f, 1.25f, 1.25f));
+
         // draw our first triangle
         glUseProgram(shaderProgram);
+        
+        // 设置变换矩阵 uniform（必须在 glUseProgram 之后）
+        unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+        
         glBindTexture(GL_TEXTURE_2D, texture);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         //glDrawArrays(GL_TRIANGLES, 0, 6);
