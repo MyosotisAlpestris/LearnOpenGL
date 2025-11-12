@@ -9,6 +9,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
 int main() {
+    //初始化GLFW
     glfwInit();
 
     //设置主要和次要版本
@@ -26,6 +27,7 @@ int main() {
     }
     //将窗口的上下文设置为当前线程的主上下文
     glfwMakeContextCurrent(window);
+
     //初始化GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -33,16 +35,18 @@ int main() {
     }
 
     glViewport(0, 0, WIDTH, HEIGHT);
+
     //设置窗口大小回调
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 
+    //渲染循环
     while (!glfwWindowShouldClose(window)) {
         //输入
         processInput(window);
 
         //设置清除颜色
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.12f, 0.11f, 0.20f, 1.0f);
         //清除颜色缓冲
         glClear(GL_COLOR_BUFFER_BIT);
         //交换缓冲
@@ -55,7 +59,7 @@ int main() {
 }
 
 
-
+//注册窗口大小调整回调函数
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
